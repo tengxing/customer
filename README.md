@@ -11,3 +11,14 @@
 ###		3 新建客户
 ##	客户查重 (防止出现多个同一用户） 
 ##	回收站 (防止管理员误删）
+
+# 关于作者
+
+
+ * Author: 遇见小星
+ * Email: tengxing7452@163.com
+ * Date: 17-5-10
+ * Time: 上午10:40
+* blog: blog.csdn.net/tengxing007
+
+ 
