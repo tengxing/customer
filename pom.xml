@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.yjxxclub.springboot</groupId>
-  <artifactId>springboot</artifactId>
+  <artifactId>customer</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>springboot Maven Webapp</name>
@@ -40,12 +40,12 @@
       <version>1.2.1</version>
     </dependency>
 
-    <dependency>
+    <!--<dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>provided</scope>
-      <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
-    </dependency>
+      <optional>true</optional> &lt;!&ndash; 这个需要为 true 热部署才有效 &ndash;&gt;
+    </dependency>-->
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -87,17 +87,34 @@
       <scope>test</scope>
     </dependency>
 
-
   </dependencies>
 
 
   <build>
-    <finalName>springboot</finalName>
+    <finalName>customer</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
+          <dependencies>
+            <!-- spring热部署 -->
+            <dependency>
+              <groupId>org.springframework</groupId>
+              <artifactId>springloaded</artifactId>
+              <version>1.2.6.RELEASE</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <mainClass>cn.yjxxclub.springboot.Mainspringboot</mainClass>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
 
         <plugin>
