@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>客户管理系统</title>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="css/global.css">
+</head>
+<body>
+
+    <!-- 布局容器 -->
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+           <!--  <img src="${ctx}/static/images/springboot.gif"> -->
+            <span class="sys-title">客户管理模块</span>
+            <ul class="layui-nav layui-nav-tree" lay-filter="info">
+               
+                <li class="layui-nav-item">
+                    <a href="javascript:;" style="background-color: #2dc3e8">遇见小星<span class="layui-nav-more"></span></a>
+                   	<a href="${pageContext.request.contextPath}/logout">退出登陆</a>
+                </li>
+            <span class="layui-nav-bar"></span></ul>
+        </div>
+
+        <!--侧边导航-->
+        <div class="layui-side layui-bg-small">
+            <div class="layui-side-scroll">
+          		 <ul class="layui-nav layui-nav-tree " lay-filter="leftnav">
+                    <li class="layui-nav-item layui-this">
+                        <a href="javascript:;"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-file-text"></i>客户库</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" data-url="${ctx}/monitor/alarm" data-id="1"><i class="iconfont icon-yonghu1"></i>我的客户</a></dd>
+                            <dd><a href="javascript:;" data-url="${ctx}/monitor/realTime" data-id="2">我创建的客户</a></dd>
+                            <dd><a href="javascript:;" data-url="${ctx}/monitor/realTime" data-id="3">我关注的客户</a></dd>
+                            <dd><a href="javascript:;" data-url="${ctx}/monitor/realTime" data-id="4">最近添加的客户</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-user"></i>联系人</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" data-url="${ctx}/monitor/realTime" data-id="1">联系人列表</a></dd>                      
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-commenting"></i>联系记录</a>
+                        <dl class="layui-nav-child">                           
+                            <dd><a href="javascript:;" data-url="${ctx}/Admin/TimeLine" data-id="1">联系列表</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-bar-chart"></i>统计报表</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">持有客户统计</a></dd>
+                            <dd><a href="javascript:;">潜在客户统计</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-eye"></i>客户查重</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">客户查重</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-trash"></i>回收站</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">回收站</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-cog"></i>业务数据设置</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">客户地区</a></dd>
+                            <dd><a href="javascript:;">客户行业</a></dd>
+                            <dd><a href="javascript:;">客户类型</a></dd>
+                            <dd><a href="javascript:;">客户状态</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+ <!--主体内容-->
+        <div class="layui-body">
+            <!-- 顶部切换卡 -->
+            <div style="margin:0;margin-top:4px;" class="layui-tab layui-tab-brief" lay-filter="tab" lay-allowclose="true">
+                <ul class="layui-tab-title">
+                    <li lay-id="0" class="layui-this">Home</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show" id = "loadhtml">
+                        <jsp:include page="init.jsp"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--底部信息-->
+        <div class="layui-footer">
+            <p style="line-height:44px;text-align:center;">客户管理模块 - Design By 遇见小星</p>
+        </div>
+ 
+<!-- 你的HTML代码 -->
+ 
+<script src="layui/layui.js"></script>
+<script type="text/javascript" src="layui/css/layui.css"></script>
+<script>
+ 
+//一般直接写在一个js文件中
+layui.use(['layer', 'form','element'], function(){
+  var layer = layui.layer
+  ,form = layui.form();
+  var element = layui.element();
+  element.init();
+  layer.msg('Hello World');
+});
+
+</script> 
+</body>
+</html>
