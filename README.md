@@ -16,9 +16,9 @@
 
 
  * Author: 遇见小星
- * Email: tengxing7452@163.com
+ * Mail: tengxing7452@163.com
  * Date: 17-5-10
  * Time: 上午10:40
-* blog: blog.csdn.net/tengxing007
+ * Blog: blog.csdn.net/tengxing007
 
  
