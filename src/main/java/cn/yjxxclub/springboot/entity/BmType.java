@@ -7,7 +7,7 @@ import java.util.Date;
  * Email: tengxing7452@163.com
  * Date: 17-6-7
  * Time: 下午4:42
- * Describe:
+ * Describe: 业务类型
  */
 public class BmType implements java.io.Serializable{
 

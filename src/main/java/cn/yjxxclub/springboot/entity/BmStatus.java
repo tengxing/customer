@@ -7,7 +7,7 @@ import java.util.Date;
  * Email: tengxing7452@163.com
  * Date: 17-6-7
  * Time: 下午4:43
- * Describe:
+ * Describe: 状态
  */
 public class BmStatus implements java.io.Serializable {
 
