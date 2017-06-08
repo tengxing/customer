@@ -55,4 +55,16 @@ public class BmIndustry implements java.io.Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "BmIndustry{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", updateDate=" + updateDate +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
+

@@ -12,8 +12,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * Date: 17-5-10
  * Time: 上午10:40
  * Describe: 程序入口
- */
-@SpringBootApplication
+ */ @SpringBootApplication
 @EnableAutoConfiguration
 public class Mainspringboot extends SpringBootServletInitializer {
 
