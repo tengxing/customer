@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="layui/css/layui.css">
   <link rel="stylesheet" type="text/css" href="css/global.css">
-
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="info">
                
                 <li class="layui-nav-item">
-                    <a href="javascript:;" style="background-color: #2dc3e8">遇见小星<span class="layui-nav-more"></span></a>
+                    <a href="javascript:;" style="background-color: #2dc3e8">遇见小星club<span class="layui-nav-more"></span></a>
                    	<a href="${pageContext.request.contextPath}/logout">退出登陆</a>
                 </li>
             <span class="layui-nav-bar"></span></ul>
@@ -75,8 +75,8 @@
                     <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-cog"></i>业务数据设置</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" data-url="${ctx}/Admin/TimeLine" data-id="1">客户地区</a></dd>
-                            <dd><a href="javascript:;" data-url="${ctx}/Admin/TimeLine" data-id="2">客户行业</a></dd>
+                            <dd><a href="javascript:;" data-url="page/area/area.html" data-id="1">客户地区</a></dd>
+                            <dd><a href="javascript:;" data-url="page/industry/industry.html" data-id="2">客户行业</a></dd>
                             <dd><a href="javascript:;" data-url="${ctx}/Admin/TimeLine" data-id="3">客户类型</a></dd>
                             <dd><a href="javascript:;" data-url="${ctx}/Admin/TimeLine" data-id="4">客户状态</a></dd>
                         </dl>
@@ -86,7 +86,7 @@
         </div>
 
  <!--主体内容-->
-        <div class="layui-body">
+        <div class="layui-body layui-bg-litle">
             <!-- 顶部切换卡 -->
             <div style="margin:0;margin-top:4px;" class="layui-tab layui-tab-brief" lay-filter="tab" lay-allowclose="true">
                 <ul class="layui-tab-title">

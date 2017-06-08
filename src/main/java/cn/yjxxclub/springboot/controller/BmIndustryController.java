@@ -25,7 +25,7 @@ public class BusinessController {
     @Autowired
     IndustryMapper industryMapper;
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     public Object list(@RequestParam(value = "page", required = false)String page,
                        @RequestParam(value = "size", required = false)String size){
         if (page==null||page==""){
@@ -44,7 +44,7 @@ public class BusinessController {
         JSONObject result = new JSONObject();
         result.put("success",true);
         result.put("status","200");
-        result.put("tatal",total);
+        result.put("total",total);
         result.put("data",list);
         return result;
     }

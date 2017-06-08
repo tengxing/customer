@@ -7,6 +7,18 @@ body {
     text-align: center;
 }
 
+.yjxx-item{
+    min-height: 51px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #bebebe;
+    /*background-color: #f3f3f3;*/
+    position: relative;
+    z-index: 100;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    -o-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
 .sys-title {
     display: inline-block;
     line-height: 60px;
@@ -63,7 +75,11 @@ ul.layui-nav-tree .layui-nav-child dd a {
 .ht-box p:nth-child(2) {
 }
 
-
+/*搜索*/
+.form-search{
+    text-align: left;
+    font-size: 12px;
+}
 
 /*表单*/
 .form-main {

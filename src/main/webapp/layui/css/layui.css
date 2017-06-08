@@ -119,13 +119,14 @@ a cite{font-style: normal; *cursor:pointer;}
 .layui-bg-black{background-color: #393D49;} /*黑*/
 .layui-bg-gray{background-color: #eee;} /*灰*/
 .layui-bg-small{background-color: #273240}
+.layui-bg-litle{background-color: #eff1f3}
 
 
 /* 文字 */
 .layui-word-aux{font-size: 12px; color: #999; padding: 0 5px;}
 
 /* 按钮 */
-.layui-btn{display: inline-block; vertical-align: middle; height: 38px; line-height: 38px; padding: 0 18px; background-color: #009688; color: #fff; white-space: nowrap; text-align: center; font-size: 14px; border: none; border-radius: 2px; cursor: pointer; opacity: 0.9; filter:alpha(opacity=90); -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;}
+.layui-btn{display: inline-block; vertical-align: middle; height: 38px; line-height: 38px; padding: 0 18px; background-color: #2dc3e8; color: #fff; white-space: nowrap; text-align: center; font-size: 14px; border: none; border-radius: 2px; cursor: pointer; opacity: 0.9; filter:alpha(opacity=90); -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;}
 .layui-btn:hover{opacity: 0.8; filter:alpha(opacity=80); color: #fff;}
 .layui-btn:active{opacity: 1; filter:alpha(opacity=100);}
 .layui-btn+.layui-btn{margin-left: 10px;}
@@ -332,7 +333,7 @@ a cite{font-style: normal; *cursor:pointer;}
 .layui-laypage a{ text-decoration: none;}
 .layui-laypage .layui-laypage-curr{position: relative;}
 .layui-laypage .layui-laypage-curr em{position: relative; color: #fff; font-weight: 400;}
-.layui-laypage .layui-laypage-curr .layui-laypage-em{position: absolute; left: -1px; top: -1px; padding: 1px; width: 100%; height: 100%; background-color: #009688; }
+.layui-laypage .layui-laypage-curr .layui-laypage-em{position: absolute; left: -1px; top: -1px; padding: 1px; width: 100%; height: 100%; background-color: #2dc3e8; }
 .layui-laypage-em{border-radius: 2px;}
 .layui-laypage-prev em,
 .layui-laypage-next em{font-family: Sim sun; font-size: 16px;}
@@ -441,7 +442,7 @@ a cite{font-style: normal; *cursor:pointer;}
 .layui-tab-more .layui-tab-bar .layui-icon{top: -2px; top: 3px\0; -webkit-transform: rotate(180deg); transform: rotate(180deg);}
 :root .layui-tab-more .layui-tab-bar .layui-icon{top: -2px\0/IE9;}
 
-.layui-tab-content{padding: 10px;}
+.layui-tab-content{padding: 10px;background-color: #eff1f3}
 
 /* Tab关闭 */.layui-tab-title li .layui-tab-close{ position: relative; margin-left: 8px; top: 1px; color: #c2c2c2; transition: all .2s; -webkit-transition: all .2s;}
 .layui-tab-title li .layui-tab-close:hover{border-radius: 2px; background-color: #FF5722; color: #fff;}
