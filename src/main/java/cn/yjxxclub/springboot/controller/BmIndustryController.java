@@ -90,6 +90,7 @@ public class BmIndustryController {
             q = industryMapper.save(bmIndustry);
         }else {
             bmIndustry.setUpdateDate(new Date());
+            System.out.print(bmIndustry);
             q = industryMapper.update(bmIndustry);
         }
         JSONObject result = new JSONObject();

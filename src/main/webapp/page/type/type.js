@@ -13,7 +13,7 @@ layui.use(['laypage', 'layer', 'form'], function () {
     });
     //保存或则跟新
     form.on('submit(formSave)', function(data){
-      $.post("/customer/area/modifyOrSave",data.field,function(result){
+      $.post("/customer/type/modifyOrSave",data.field,function(result){
         if(result.success){
             alert("操作成功");
             setTimeout(function () {
@@ -34,7 +34,7 @@ layui.use(['laypage', 'layer', 'form'], function () {
 //添加文章
 $('#addlayer').click(function () {
     var $ = layui.jquery;
-    $.get('/customer/page/area/add.html', function(str){
+    $.get('/customer/page/type/add.html', function(str){
       layer.open({
         type: 1,
           title: '添加',
@@ -63,7 +63,7 @@ function initPage(currentIndex, pageSize) {
     var laypageId = 'pageNav';
     $.ajax({
         type: 'post',
-        url: '/customer/area/list',
+        url: '/customer/type/list',
         data:{ "page": currentIndex, "size": pageSize },
         datatype: 'json',
         success: function (res) {
@@ -79,9 +79,9 @@ function initPage(currentIndex, pageSize) {
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
                     if(item.status==1){
-                        item.status='正常';
+                        item.status='启用';
                     }else{
-                        item.status='使用错误';
+                        item.status='未启用';
                     }
                     html += "<tr>";
                     /*html += "<td><input type='checkbox' lay-skin='primary' lay-filter='allChoose'></td>";*/
@@ -142,7 +142,7 @@ function initPage(currentIndex, pageSize) {
 //编辑文章
 function modifylayer(articleId) {
     var $ = layui.jquery;
-    $.get('/customer/page/area/add.html', function(str){
+    $.get('/customer/page/type/add.html', function(str){
       layer.open({
         type: 1,
           title: '编辑',
@@ -163,7 +163,7 @@ function modifylayer(articleId) {
     var index = layer.load(1);
     $.ajax({
         type: 'post',
-        url: '/customer/area/find',
+        url: '/customer/type/find',
         data: 'id=' + articleId,
         success: function (result) {
             data = result.data;
@@ -193,7 +193,7 @@ function deletelayer(articleId) {
         var index = layer.load(1);
         $.ajax({
             type: 'post',
-            url: ' /customer/area/delete',
+            url: ' /customer/type/delete',
             data: { "id": articleId },
             success: function (res) {
                 layer.close(index);

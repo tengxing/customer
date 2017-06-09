@@ -12,7 +12,7 @@
     </resultMap>
 
     <insert id="save" parameterType="Map" >
-        INSERT INTO t_bm_industry VALUES (null,#{name},#{status},now(),now())
+        INSERT INTO t_bm_industry VALUES (null,#{name},#{status},null,now())
     </insert>
 
     <select id="findById" resultMap="IndustryResult" parameterType="java.lang.Integer">

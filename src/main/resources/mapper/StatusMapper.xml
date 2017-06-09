@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yjxxclub.springboot.mapper.AreaMapper">
-    <resultMap id="AreaResult" type="cn.yjxxclub.springboot.entity.BmArea">
+<mapper namespace="cn.yjxxclub.springboot.mapper.StatusMapper">
+    <resultMap id="StatusResult" type="cn.yjxxclub.springboot.entity.BmStatus">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="status" column="status"/>
@@ -12,16 +12,16 @@
     </resultMap>
 
     <insert id="save" parameterType="Map" >
-        INSERT INTO t_bm_area VALUES (null,#{name},#{status},null,now())
+        INSERT INTO t_bm_status VALUES (null,#{name},#{status},null,now())
     </insert>
 
-    <select id="findById" resultMap="AreaResult" parameterType="java.lang.Integer">
-        SELECT * from t_bm_area
+    <select id="findById" resultMap="StatusResult" parameterType="java.lang.Integer">
+        SELECT * from t_bm_status
         WHERE id=#{id}
     </select>
 
     <update id="update" parameterType="Map">
-        UPDATE t_bm_area
+        UPDATE t_bm_status
         <set>
             <if test="name!=null and name!='' ">
                 name=#{name},
@@ -35,11 +35,11 @@
     </update>
 
     <select id="countTotal" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM t_bm_area
+        SELECT COUNT(*) FROM t_bm_status
     </select>
 
-    <select id="list" parameterType="Map" resultMap="AreaResult">
-        SELECT * from t_bm_area
+    <select id="list" parameterType="Map" resultMap="StatusResult">
+        SELECT * from t_bm_status
         <where>
             <if test="updateDate!=null and updateDate!='' ">
                 and DATE_FORMAT(updateDate,'%Y年%m月') = #{updateDate}
@@ -49,6 +49,6 @@
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Integer">
-        DELETE FROM t_bm_area WHERE id=#{id}
+        DELETE FROM t_bm_status WHERE id=#{id}
     </delete>
 </mapper>

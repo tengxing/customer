@@ -72,16 +72,21 @@ function initPage(currentIndex, pageSize) {
                 var html = '';
                 html += '<table style="" class="layui-table">';
                 html += '<colgroup><col width="10%"><col width="20%"><col width="20%"><col width="20%"><col></colgroup>';
-                html += '<thead><tr><th>ID</th><th>名字</th><th>状态</th><th>修改时间</th><th>操作</th></tr></thead>';
+                html += '<thead><tr><th>ID</th><th>名称</th><th>使用状态</th><th>修改时间</th><th>操作</th></tr></thead>';
                 html += '<tbody>';
                 //遍历文章集合
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
+                    if(item.status==1){
+                        item.status='启用';
+                    }else{
+                        item.status='未启用';
+                    }
                     html += "<tr>";
                     /*html += "<td><input type='checkbox' lay-skin='primary' lay-filter='allChoose'></td>";*/
                     html += "<td>" + item.id+ "</td>";
                     html += "<td>" + item.name + "</td>";
-                    html += "<td>" + item.status + "</td>";
+                    html += "<td style='color:green'>" + item.status + "</td>";
                     html += "<td>" + item.updateDate + "</td>";
                     html += "<td>" + '<div class="layui-btn-group"><button onclick="modifylayer('+item.id
                     			   + ');" class="do-action layui-btn layui-btn-small">编辑</button><button onclick="deletelayer('+item.id

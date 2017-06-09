@@ -1,7 +1,8 @@
 package cn.yjxxclub.springboot.controller;
 
 import cn.yjxxclub.springboot.entity.BmArea;
-import cn.yjxxclub.springboot.mapper.AreaMapper;
+import cn.yjxxclub.springboot.entity.BmStatus;
+import cn.yjxxclub.springboot.mapper.StatusMapper;
 import cn.yjxxclub.springboot.util.DateJsonValueProcessor;
 import cn.yjxxclub.springboot.util.PageBean;
 import com.alibaba.fastjson.JSONObject;
@@ -21,15 +22,15 @@ import java.util.Map;
  * Author: 遇见小星
  * Email: tengxing7452@163.com
  * Date: 17-6-9
- * Time: 上午10:11
- * Describe: 地区控制器
+ * Time: 下午9:19
+ * Describe: 状态控制器
  */
 @RestController
-@RequestMapping("/area")
-public class BmAreaController {
+@RequestMapping("/status")
+public class BmStatusController {
 
     @Autowired
-    AreaMapper areaMapper;
+    StatusMapper statusMapper;
 
     /**
      * 分页
@@ -50,8 +51,8 @@ public class BmAreaController {
         Map<String,Object> map = new HashedMap();
         map.put("start",pageBean.getStart());
         map.put("size",pageBean.getPageSize());
-        List<BmArea> list = areaMapper.list(map);
-        Integer total = areaMapper.countTotal();
+        List<BmStatus> list = statusMapper.list(map);
+        Integer total = statusMapper.countTotal();
         JsonConfig jsonConfig=new JsonConfig();
         jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd"));
         net.sf.json.JSONArray jsonArray= net.sf.json.JSONArray.fromObject(list,jsonConfig);
@@ -71,7 +72,7 @@ public class BmAreaController {
      */
     @PostMapping("/find")
     public Object find(@RequestParam(value = "id")Integer id){
-        BmArea bmIndustry = areaMapper.findById(id);
+        BmStatus bmIndustry = statusMapper.findById(id);
         JSONObject result = new JSONObject();
         result.put("success",true);
         result.put("status",200);
@@ -85,16 +86,16 @@ public class BmAreaController {
      * @return
      */
     @PostMapping("/modifyOrSave")
-    public Object modifyOrSave(BmArea bmIndustry){
+    public Object modifyOrSave(BmStatus bmIndustry){
         Integer q;
         bmIndustry.setStatus(1);//正常
         if (bmIndustry.getId()==null){
             bmIndustry.setCreateDate(new Date());
-            q = areaMapper.save(bmIndustry);
+            q = statusMapper.save(bmIndustry);
         }else {
             bmIndustry.setUpdateDate(new Date());
             System.out.print(bmIndustry);
-            q = areaMapper.update(bmIndustry);
+            q = statusMapper.update(bmIndustry);
         }
         JSONObject result = new JSONObject();
         result.put("success",true);
@@ -115,7 +116,7 @@ public class BmAreaController {
     @PostMapping("/delete")
     public Object delete(@RequestParam(value = "id")Integer id){
 
-        Integer q = areaMapper.deleteById(id);
+        Integer q = statusMapper.deleteById(id);
         JSONObject result = new JSONObject();
         result.put("success",true);
         result.put("status",200);
