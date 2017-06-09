@@ -89,22 +89,13 @@ layui.use(['element', 'layer', 'util'], function () {
             element.tabChange('tab', id);
         } else {
             var index = layer.load(1);
+
+            data = '<iframe src="' + url + '" style="width:100%;height:564px;border:none;outline:none;"></iframe>';
+            layer.close(index);
+            element.tabAdd('tab', { title: title, content: data, id: id });
+            //切换到指定索引的卡片
+            element.tabChange('tab', id);
             
-            $.ajax({
-                type: 'get',
-                url: url,
-                success: function (data) {
-                    layer.close(index);
-                    element.tabAdd('tab', { title: title, content: data, id: id });
-                    //切换到指定索引的卡片
-                    element.tabChange('tab', id);
-                },
-                error: function (e) {
-                    var message = e.responseText;
-                    layer.close(index);
-                    layer.msg(message, { icon: 2 });
-                }
-            });
         }
     });
 

@@ -5,71 +5,24 @@ layui.use(['laypage', 'layer', 'form'], function () {
         form = layui.form();
     initPage(1, 8);
 
-    //监听置顶CheckBox
-    form.on('checkbox(top)', function (data) {
-        $.ajax({
-            type: 'post',
-            url: '/api/admin/MakeTopOrNot',
-            data: { "": data.value },
-            success: function (res) {
-                if (!res.Success) {
-                    if (data.elem.checked) {
-                        data.elem.checked = false;
-                    }
-                    else {
-                        data.elem.checked = true;
-                    }
-                }
-                form.render();  //重新渲染
-                layer.msg(res.Message);
-            },
-            error: function (e) {
-                layer.msg(e.responseText);
-            }
-        });
-    });
-
-    //监听推荐CheckBox
-    form.on('checkbox(recommend)', function (data) {
-        $.ajax({
-            type: 'post',
-            url: '/api/admin/MakeRecommendOrNot',
-            data: { "": data.value },
-            success: function (res) {
-                if (!res.Success) {
-                    if (data.elem.checked) {
-                        data.elem.checked = false;
-                    }
-                    else {
-                        data.elem.checked = true;
-                    }
-                }
-                form.render();  //重新渲染
-                layer.msg(res.Message);
-            },
-            error: function (e) {
-                layer.msg(e.responseText);
-            }
-        });
-    });
 
     //搜索
     form.on('submit(formSearch)', function (data) {
-        layer.msg('文章太少，此功能赞不提供');
+        layer.msg('太少，此功能赞不提供');
         return false;
     });
     //保存或则跟新
     form.on('submit(formSave)', function(data){
-	  $.post("industry/modifyOrSave",data.field,function(result){
-	  	if(result.success){
-	  		alert("操作成功");
-	  		setTimeout(function () {
+      $.post("/customer/area/modifyOrSave",data.field,function(result){
+        if(result.success){
+            alert("操作成功");
+            setTimeout(function () {
                         initPage(1, 8);
                     }, 500);
-	  	}
-	  });
-	  return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	});
+        }
+      });
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
 
  
 
@@ -81,22 +34,22 @@ layui.use(['laypage', 'layer', 'form'], function () {
 //添加文章
 $('#addlayer').click(function () {
     var $ = layui.jquery;
-	$.get('page/industry/add.html', function(str){
-	  layer.open({
-	    type: 1,
-		  title: '添加',
-		  closeBtn: 1,
-		  shade:0.5,
-		  shadeClose: true,
-		  anim:1,
-		  maxmin:true,
-		  isOutAnim: true,
-		  skin: 'yourclass',
-		  area: ['720px', '100%'],
-		  offset: ['60px','61%'],
-	    content: str //注意，如果str是object，那么需要字符拼接。
-	  });
-	});  
+    $.get('/customer/page/area/add.html', function(str){
+      layer.open({
+        type: 1,
+          title: '添加',
+          closeBtn: 1,
+          shade:0.5,
+          shadeClose: true,
+          anim:1,
+          maxmin:true,
+          isOutAnim: true,
+          skin: 'yourclass',
+          area: ['720px', '100%'],
+          offset: ['60px','61%'],
+        content: str //注意，如果str是object，那么需要字符拼接。
+      });
+    });  
 });
 
 //页数据初始化
@@ -110,7 +63,7 @@ function initPage(currentIndex, pageSize) {
     var laypageId = 'pageNav';
     $.ajax({
         type: 'post',
-        url: 'industry/list',
+        url: '/customer/area/list',
         data:{ "page": currentIndex, "size": pageSize },
         datatype: 'json',
         success: function (res) {
@@ -132,8 +85,8 @@ function initPage(currentIndex, pageSize) {
                     html += "<td>" + item.status + "</td>";
                     html += "<td>" + item.updateDate + "</td>";
                     html += "<td>" + '<div class="layui-btn-group"><button onclick="modifylayer('+item.id
-                    			   + ');" class="do-action layui-btn layui-btn-small">编辑</button><button onclick="deletelayer('+item.id
-                    			   + ');" class="do-action layui-btn layui-btn-small">删除</button></div>'
+                                   + ');" class="do-action layui-btn layui-btn-small">编辑</button><button onclick="deletelayer('+item.id
+                                   + ');" class="do-action layui-btn layui-btn-small">删除</button></div>'
                                    + "</td>";
                     html += "</tr>";
                 }
@@ -183,37 +136,37 @@ function initPage(currentIndex, pageSize) {
 
 //编辑文章
 function modifylayer(articleId) {
-	var $ = layui.jquery;
-	$.get('page/industry/add.html', function(str){
-	  layer.open({
-	    type: 1,
-		  title: '编辑',
-		  closeBtn: 1,
-		  shade:0.5,
-		  shadeClose: true,
-		  anim:1,
-		  maxmin:true,
-		  isOutAnim: true,
-		  skin: 'yourclass',
-		  area: ['720px', '100%'],
-		  offset: ['60px','61%'],
-	    content: str //注意，如果str是object，那么需要字符拼接。
-	  });
-	});
+    var $ = layui.jquery;
+    $.get('/customer/page/area/add.html', function(str){
+      layer.open({
+        type: 1,
+          title: '编辑',
+          closeBtn: 1,
+          shade:0.5,
+          shadeClose: true,
+          anim:1,
+          maxmin:true,
+          isOutAnim: true,
+          skin: 'yourclass',
+          area: ['720px', '100%'],
+          offset: ['60px','61%'],
+        content: str //注意，如果str是object，那么需要字符拼接。
+      });
+    });
 
     var $ = layui.jquery;
     var index = layer.load(1);
     $.ajax({
         type: 'post',
-        url: 'industry/find',
+        url: '/customer/area/find',
         data: 'id=' + articleId,
         success: function (result) {
-        	data = result.data;
-        	console.info(data)
+            data = result.data;
+            console.info(data)
             layer.close(index);
             $('#id').val(data.id);
- 			$('#name').val(data.name);
- 			$('#status').val(data.status);
+            $('#name').val(data.name);
+            $('#status').val(data.status);
             /*$('#articleBack').bind('click', function () {
                 initilArticle(1, 8);
             });*/
@@ -235,12 +188,12 @@ function deletelayer(articleId) {
         var index = layer.load(1);
         $.ajax({
             type: 'post',
-            url: 'industry/delete',
+            url: ' /customer/area/delete',
             data: { "id": articleId },
             success: function (res) {
                 layer.close(index);
                 if (res.success) {
-                	layer.msg("操作成功", {icon: 1});
+                    layer.msg("操作成功", {icon: 1});
                     setTimeout(function () {
                         initPage(1, 8);
                     }, 500);
