@@ -13,7 +13,7 @@ layui.use(['laypage', 'layer', 'form'], function () {
     });
     //保存或则跟新
     form.on('submit(formSave)', function(data){
-      $.post("/customer/area/modifyOrSave",data.field,function(result){
+      $.post("/customer/member/modifyOrSave",data.field,function(result){
         if(result.success){
             alert("操作成功");
             setTimeout(function () {
@@ -31,10 +31,10 @@ layui.use(['laypage', 'layer', 'form'], function () {
     form.render();
 });
 
-//添加文章
+//添加
 $('#addlayer').click(function () {
     var $ = layui.jquery;
-    $.get('/customer/page/area/add.html', function(str){
+    $.get('/customer/page/member/add.html', function(str){
       layer.open({
         type: 1,
           title: '添加',
@@ -63,7 +63,7 @@ function initPage(currentIndex, pageSize) {
     var laypageId = 'pageNav';
     $.ajax({
         type: 'post',
-        url: '/customer/area/list',
+        url: '/customer/member/list',
         data:{ "page": currentIndex, "size": pageSize },
         datatype: 'json',
         success: function (res) {
@@ -72,8 +72,8 @@ function initPage(currentIndex, pageSize) {
                 var data = res.data;
                 var html = '';
                 html += '<table style="" class="layui-table">';
-                html += '<colgroup><col width="10%"><col width="20%"><col width="20%"><col width="20%"><col></colgroup>';
-                html += '<thead><tr><th>ID</th><th>名称</th><th>使用状态</th><th>修改时间</th><th>操作</th></tr></thead>';
+                html += '<colgroup><col width="10%"><col width="15%"><col width="15%"><col width="15%"><col width="15%"><col></colgroup>';
+                html += '<thead><tr><th>ID</th><th>客户名称</th><th>客户经理</th><th>状态</th><th>类型</th><th>操作</th></tr></thead>';
                 html += '<tbody>';
                 //遍历文章集合
                 for (var i = 0; i < data.length; i++) {
@@ -87,10 +87,11 @@ function initPage(currentIndex, pageSize) {
                     /*html += "<td><input type='checkbox' lay-skin='primary' lay-filter='allChoose'></td>";*/
                     html += "<td>" + item.id+ "</td>";
                     html += "<td>" + item.name + "</td>";
-                    html += "<td style='color:green'>" + item.status + "</td>";
-                    html += "<td>" + item.updateDate + "</td>";
+                    html += "<td>" + item.user.username + "</td>";
+                    html += "<td style='color:green'>" + item.bmStatus.name + "</td>";
+                    html += "<td style='color:green'>" + item.bmType.name + "</td>";
                     html += "<td>" + '<div class="layui-btn-group"><button onclick="modifylayer('+item.id
-                                   + ');" class="do-action layui-btn layui-btn-small">编辑</button><button onclick="deletelayer('+item.id
+                                   + ');" class="do-action layui-btn layui-btn-small">查看</button><button onclick="deletelayer('+item.id
                                    + ');" class="do-action layui-btn layui-btn-small">删除</button></div>'
                                    + "</td>";
                     html += "</tr>";
@@ -142,10 +143,10 @@ function initPage(currentIndex, pageSize) {
 //编辑文章
 function modifylayer(articleId) {
     var $ = layui.jquery;
-    $.get('/customer/page/area/add.html', function(str){
+    $.get('/customer/page/member/add.html', function(str){
       layer.open({
         type: 1,
-          title: '编辑',
+          title: '客户',
           closeBtn: 1,
           shade:0.5,
           shadeClose: true,
@@ -153,8 +154,8 @@ function modifylayer(articleId) {
           maxmin:true,
           isOutAnim: true,
           skin: 'yourclass',
-          area: ['720px', '100%'],
-          offset: ['1px','61%'],
+          area: ['867px', '100%'],
+          offset: ['1px','47%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
     });
@@ -163,7 +164,7 @@ function modifylayer(articleId) {
     var index = layer.load(1);
     $.ajax({
         type: 'post',
-        url: '/customer/area/find',
+        url: '/customer/member/find',
         data: 'id=' + articleId,
         success: function (result) {
             data = result.data;
@@ -193,7 +194,7 @@ function deletelayer(articleId) {
         var index = layer.load(1);
         $.ajax({
             type: 'post',
-            url: ' /customer/area/delete',
+            url: ' /customer/member/delete',
             data: { "id": articleId },
             success: function (res) {
                 layer.close(index);

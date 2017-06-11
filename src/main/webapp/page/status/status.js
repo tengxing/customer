@@ -46,7 +46,7 @@ $('#addlayer').click(function () {
           isOutAnim: true,
           skin: 'yourclass',
           area: ['720px', '100%'],
-          offset: ['60px','61%'],
+          offset: ['1px','61%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
     });  
@@ -154,7 +154,7 @@ function modifylayer(articleId) {
           isOutAnim: true,
           skin: 'yourclass',
           area: ['720px', '100%'],
-          offset: ['60px','61%'],
+          offset: ['1px','61%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
     });
