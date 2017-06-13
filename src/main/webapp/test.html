@@ -1,3 +1,134 @@
-<div>
-	tengxing
-</div>>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>客户管理系统</title>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="css/global.css">
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">基本信息</li>
+    <li>联系人</li>
+    <li>联系记录</li>
+    <li>其他</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show" id="show-member">
+<form class="layui-form" action="" method="post">
+        <div class="layui-form-item">
+          <label class="layui-form-label">ID</label>
+          <div class="layui-input-block">  
+            <input type="text" id="id" name="id" autocomplete="off" class="layui-input layui-disabled" value="" disabled="disabled">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户名称</label>
+          <div class="layui-input-block">
+            <input type="text" id="name" name="name" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户经理</label>
+          <div class="layui-input-block">
+            <input type="text" id="name" name="name" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户状态</label>
+          <div class="layui-input-block">
+            <input type="text" id="name" name="name" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户类型</label>
+          <div class="layui-input-block">
+            <input type="radio" name="status" value="1" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>启用</span></div>
+            <input type="radio" name="status" value="0"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>未启用</span></div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户类别</label>
+           <div class="layui-input-inline input-custom-width">
+              <select name="model_id" lay-verify="required"><option value="">请选择</option><option value="1">单页模型</option><option value="2">文章模型</option><option value="3">图集模型</option><option value="4">链接模型</option><option value="5">下载模型</option></select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="1" class="">单页模型</dd><dd lay-value="2" class="">文章模型</dd><dd lay-value="3" class="">图集模型</dd><dd lay-value="4" class="">链接模型</dd><dd lay-value="5" class="">下载模型</dd></dl></div>
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="formSave">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+    <div class="layui-tab-item">内容2</div>
+    <div class="layui-tab-item">内容3</div>
+    <div class="layui-tab-item">暂无</div>
+  </div>
+</div>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('element','form', function(){
+  var $ = layui.jquery
+  ,element = layui.element() //Tab的切换功能，切换事件监听等，需要依赖element模块
+  ,form = layui.form();
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0) //用于演示
+        ,content: '内容'+ (Math.random()*1000|0)
+        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+      })
+    }
+    ,tabDelete: function(othis){
+      //删除指定Tab项
+      element.tabDelete('demo', '44'); //删除：“商品管理”
+      
+      
+      othis.addClass('layui-btn-disabled');
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', '22'); //切换到：用户管理
+    }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var othis = $(this), type = othis.data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+  
+  //Hash地址的定位
+  var layid = location.hash.replace(/^#test=/, '');
+  element.tabChange('test', layid);
+  
+  element.on('tab(test)', function(elem){
+    location.hash = 'test='+ $(this).attr('lay-id');
+  });
+  
+});
+</script>
+ <script src="layui/layui.js"></script>
+  <script src="js/global.js"></script>
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form();
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>
+</body>
+</html>

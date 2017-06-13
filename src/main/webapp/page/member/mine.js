@@ -70,7 +70,7 @@ function initPage(currentIndex, pageSize) {
     $.ajax({
         type: 'post',
         url: '/customer/member/list',
-        data:{ "page": currentIndex, "size": pageSize },
+        data:{ "page": currentIndex, "size": pageSize,"creator":"遇见小星" },
         datatype: 'json',
         success: function (res) {
             layer.close(index);

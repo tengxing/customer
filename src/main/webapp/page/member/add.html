@@ -1,3 +1,4 @@
+
 <div class="layui-tab">
   <ul class="layui-tab-title">
     <li class="layui-this">基本信息</li>
@@ -7,22 +8,83 @@
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show" id="show-member">
+      <form class="layui-form" action="" method="post">
+        <div class="layui-form-item">
+          <label class="layui-form-label">ID</label>
+          <div class="layui-input-block">  
+            <input type="text" id="id" name="id" autocomplete="off" class="layui-input layui-disabled" value="" disabled="disabled">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户名称</label>
+          <div class="layui-input-block">
+            <input type="text" id="name" name="name" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户经理</label>
+          <div class="layui-input-block">
+            <input type="text" id="user_username" name="userId" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户状态</label>
+           <div class="layui-input-inline input-custom-width">
+              <select name="statusId" lay-verify="required">
+                <option value="1">正常</option>
+                <option value="6">冻结</option>
+                <option value="2">丢失</option>
+                <option value="3">潜在</option>
+                <option value="4">成功</option>
+                <option value="5">失败</option>
+              </select>
+            </div>
+          <label class="layui-form-label">客户类别</label>
+           <div class="layui-input-inline input-custom-width">
+              <select name="typeId" lay-verify="required">
+                <option value="1">客户</option>
+                <option value="6">代理商</option>
+                <option value="2">零售商</option>
+                <option value="3">合作伙伴</option>
+                <option value="4">竞争对手</option>
+                <option value="5">供应商</option>
+              </select>
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+          <label class="layui-form-label">关注</label>
+          <div class="layui-input-block">
+              <input type="hidden" id="J_hdn_isshow" name="status" value="0">
+              <input type="checkbox" checked="" lay-verify="required" lay-skin="switch" lay-filter="F_switch" data-hdnid="#J_hdn_isshow" lay-text="ON|OFF">
+              <div class="layui-unselect layui-form-switch" lay-skin="_switch">
+                <em>OFF</em><i></i>
+              </div>
+          </div>
 
-      1. 高度默认自适应，也可以随意固宽。
-      <br>2. Tab进行了响应式处理，所以无需担心数量多少。
+        </div>
+        
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="formSave">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+        
+      </form>
     </div>
     <div class="layui-tab-item">内容2</div>
     <div class="layui-tab-item">内容3</div>
     <div class="layui-tab-item">暂无</div>
   </div>
 </div>
-<script src="//res.layui.com/layui/build/layui.js" charset="utf-8"></script>
+
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-layui.use('element', function(){
+layui.use('element','form', function(){
   var $ = layui.jquery
-  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
-  
+  ,element = layui.element() //Tab的切换功能，切换事件监听等，需要依赖element模块
+  ,form = layui.form();
   //触发事件
   var active = {
     tabAdd: function(){
