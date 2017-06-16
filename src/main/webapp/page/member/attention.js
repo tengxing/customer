@@ -40,7 +40,7 @@ layui.use(['laypage', 'layer', 'form'], function () {
 //添加
 $('#addlayer').click(function () {
     var $ = layui.jquery;
-    $.get('/customer/test.html', function(str){
+    $.get('/customer/page/member/add.html', function(str){
       layer.open({
         type: 1,
           title: '添加',
@@ -70,7 +70,7 @@ function initPage(currentIndex, pageSize) {
     $.ajax({
         type: 'post',
         url: '/customer/member/list',
-        data:{ "page": currentIndex, "size": pageSize },
+        data:{ "page": currentIndex, "size": pageSize,"status":"2" },
         datatype: 'json',
         success: function (res) {
             layer.close(index);
