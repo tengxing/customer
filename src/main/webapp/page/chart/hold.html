@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>地区类型</title>
+		<link rel="stylesheet" href="/customer/layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="/customer/css/global.css">
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js">
+  </script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/d3/4.9.1/d3.min.js"></script>
+  <style type="text/css">
+  	.layui-tab-title li {
+    position: relative;
+    line-height: 40px;
+    min-width: 200px;
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+	}.layui-nav {
+		background-color: #dddaaa;
+	}
+  </style>
+</head>
+<body>
+			<!-- 	<ul class="layui-nav " lay-filter="">
+                    <li class="layui-nav-item layui-this">
+                        <a href="javascript:;"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-file-text"></i>客户库</a>    
+                    </li>                  
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-commenting"></i>联系记录</a>   
+                    </li>
+                    <li class="layui-nav-item">
+                       <a href="javascript:;"><i class="fa fa-bar-chart"></i>统计报表</a> 
+                    </li>
+                </ul> -->
+	<div class="layui-tab" style="text-align:center !important;">
+  		<ul class="layui-tab-title" style="">
+		    <li class="layui-this">按状态</li>
+		    <li>按类型</li>
+		    <li>按地区</li>
+		    <li>按行业</li>
+  		</ul>
+		  <div class="layui-tab-content">
+		    <div class="layui-tab-item layui-show" id="show-member">
+		    	<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<div class="layui-form">
+				        	<div id="pageContent" class="">
+				            <!--内容区域 ajax获取-->
+				        	</div>
+				    	</div>
+					</div>
+				</div>
+		    </div>
+		    <div class="layui-tab-item">内容2</div>
+		    <div class="layui-tab-item">内容3</div>
+		    <div class="layui-tab-item">暂无</div>
+		  </div>
+	</div>
+
+
+
+
+
+
+
+
+
+<div class="row-right" style="float: right;"></div>
+<script src="/customer/layui/layui.js"></script>
+<script type="text/javascript" src="/customer/page/chart/mychart.js"></script>
+</body>
+</html>
