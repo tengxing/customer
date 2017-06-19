@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    .content-box{
+    border: 1px solid #ddd;
+      width: 49%;
+      background-color: #ffffff;
+      min-height: 400px;
+      float: left;
+      margin-left: 9px;
+      padding-top: 10px;
+  }
+  .content-box-big{
+    border: 1px solid #ddd;
+      width: 98.7%;
+      background-color: #ffffff;
+      min-height: 400px;
+      float: left;
+      margin-top: 15px;
+      margin-left: 9px;
+      padding-top: 10px;
+  }.content-data{
+    padding: 3px;
+  </style>
+</head>
+<body>
+  <div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">基本信息</li>
+    <li>联系人</li>
+    <li>联系记录</li>
+    <li>其他</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show" id="show-member">
+      <form class="layui-form" action="" method="post">
+        <div class="layui-form-item">
+          <label class="layui-form-label">ID</label>
+          <div class="layui-input-block">  
+            <input type="text" id="id" name="id" autocomplete="off" class="layui-input layui-disabled" value="" disabled="disabled">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户名称</label>
+          <div class="layui-input-block">
+            <input type="text" id="name" name="name" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户经理</label>
+          <div class="layui-input-block">
+            <input type="text" id="user_username" name="userId" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">通讯地址</label>
+          <div class="layui-input-inline input-custom-width">
+            <input type="text" id="address" name="address" autocomplete="off" class="layui-input" value="">
+          </div>
+          <label class="layui-form-label">联系方式</label>
+          <div class="layui-input-inline input-custom-width">
+            <input type="text" id="phoneNumber" name="phoneNumber" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户状态</label>
+           <div class="layui-input-inline input-custom-width">
+              <select name="statusId" lay-verify="required">
+                <option value="1">正常</option>
+                <option value="6">冻结</option>
+                <option value="2">丢失</option>
+                <option value="3">潜在</option>
+                <option value="4">成功</option>
+                <option value="5">失败</option>
+              </select>
+            </div>
+          <label class="layui-form-label">客户类别</label>
+           <div class="layui-input-inline input-custom-width">
+              <select name="typeId" lay-verify="required">
+                <option value="1">客户</option>
+                <option value="6">代理商</option>
+                <option value="2">零售商</option>
+                <option value="3">合作伙伴</option>
+                <option value="4">竞争对手</option>
+                <option value="5">供应商</option>
+              </select>
+            </div>
+        </div>
+        
+      
+        
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="formSave">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+    <div class="layui-tab-item">
+      <form class="layui-form">
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <input type="text" id="contact_username" name="username" autocomplete="off" class="layui-input" style="background-color:#eff1f3;border: 1px solid #eff1f3;" value="">
+          </div>
+          
+        </div>
+        <hr>
+        <input type="hidden" value="" id="contact_id" name="id"/>
+        <div class="layui-form-item">
+          <label class="layui-form-label">称呼</label>
+          <div class="layui-input-block">
+            <input type="text" id="contact_nickname" name="nickname" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">联系电话</label>
+          <div class="layui-input-block">
+            <input type="text" id="contact_phoneNumber" name="phoneNumber" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">邮箱</label>
+          <div class="layui-input-block">
+            <input type="text" id="contact_mail" name="mail" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="formContactSave">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="layui-tab-item">
+    </div>
+    <div class="layui-tab-item">暂无</div>
+  </div>
+</div>
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+
+  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块;
+  //触发事件
+  
+  $('.site-demo-active').on('click', function(){
+    var othis = $(this), type = othis.data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+  
+  //Hash地址的定位
+  var layid = location.hash.replace(/^#test=/, '');
+  element.tabChange('test', layid);
+  
+  element.on('tab(test)', function(elem){
+    location.hash = 'test='+ $(this).attr('lay-id');
+  });
+
+});
+</script>
+</body>
+</html>
+
