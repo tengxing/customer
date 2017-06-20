@@ -16,6 +16,24 @@ public class ContactNotes implements java.io.Serializable{
     private String contactType;
     private String description;
     private Date contactTime;
+    private Integer status;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -55,5 +73,18 @@ public class ContactNotes implements java.io.Serializable{
 
     public void setContactTime(Date contactTime) {
         this.contactTime = contactTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactNotes{" +
+                "id=" + id +
+                ", memberId=" + memberId +
+                ", contactType='" + contactType + '\'' +
+                ", description='" + description + '\'' +
+                ", contactTime=" + contactTime +
+                ", status=" + status +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

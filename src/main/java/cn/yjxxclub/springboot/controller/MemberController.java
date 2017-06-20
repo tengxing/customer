@@ -4,7 +4,9 @@ import cn.yjxxclub.springboot.entity.*;
 import cn.yjxxclub.springboot.mapper.MemberMapper;
 import cn.yjxxclub.springboot.util.DateJsonValueProcessor;
 import cn.yjxxclub.springboot.util.PageBean;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import net.sf.json.JsonConfig;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
-
     @Autowired
     MemberMapper memberMapper;
 
@@ -82,10 +83,28 @@ public class MemberController {
     @PostMapping("/find")
     public Object find(@RequestParam(value = "id")Integer id){
         Member member = memberMapper.findById(id);
+        JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd";
+        JsonConfig jsonConfig=new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        net.sf.json.JSONArray jsonArray= net.sf.json.JSONArray.fromObject(member,jsonConfig);
         JSONObject result = new JSONObject();
         result.put("success",true);
         result.put("status",200);
         result.put("data",member);
+        return result;
+    }
+
+    @PostMapping("/findListByName")
+    public Object findByName(@RequestParam(value = "name")String name){
+        String searchText = new StringBuilder("%").append(name).append("%").toString();
+        List<Member> list = memberMapper.findListByName(name);
+        JsonConfig jsonConfig=new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd"));
+        net.sf.json.JSONArray jsonArray= net.sf.json.JSONArray.fromObject(list,jsonConfig);
+        JSONObject result = new JSONObject();
+        result.put("success",true);
+        result.put("status",200);
+        result.put("data",jsonArray);
         return result;
     }
 
@@ -100,7 +119,8 @@ public class MemberController {
                                @RequestParam(value = "statusId")Integer statusId,
                                @RequestParam(value = "typeId")Integer typeId,
                                @RequestParam(value = "industryId",required = false)Integer industryId,
-                               @RequestParam(value = "areaId",required = false)Integer areaId){
+                               @RequestParam(value = "areaId",required = false)Integer areaId
+                                ){
 
         User user = new User();
         user.setId(userId);
@@ -118,6 +138,9 @@ public class MemberController {
         member.setBmType(bmType);
         member.setUser(user);
         Integer q;
+        Contact contact = new Contact();
+        contact.setId(1);
+        member.setContact(contact);
         member.setStatus(1);//正常
         if (member.getId()==null){
             member.setCreateDate(new Date());

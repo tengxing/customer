@@ -82,7 +82,7 @@ public class ContactController {
 
     /**
      * 保存或者更新
-     * @param bmIndustry
+     * @param contact
      * @return
      */
     @PostMapping("/modifyOrSave")

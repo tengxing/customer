@@ -16,7 +16,7 @@ public class User implements java.io.Serializable{
     private String username;
     private String password;
     private String department;
-    private String  maiil;
+    private String  mail;
     private Integer status;
     private String loginIP;
     private Date loginDate;
@@ -62,12 +62,12 @@ public class User implements java.io.Serializable{
         this.department = department;
     }
 
-    public String getMaiil() {
-        return maiil;
+    public String getMail() {
+        return mail;
     }
 
-    public void setMaiil(String maiil) {
-        this.maiil = maiil;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public Integer getStatus() {
@@ -100,5 +100,21 @@ public class User implements java.io.Serializable{
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", department='" + department + '\'' +
+                ", mail='" + mail + '\'' +
+                ", status=" + status +
+                ", loginIP='" + loginIP + '\'' +
+                ", loginDate=" + loginDate +
+                ", createDate=" + createDate +
+                '}';
     }
 }

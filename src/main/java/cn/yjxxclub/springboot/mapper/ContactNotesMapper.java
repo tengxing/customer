@@ -3,6 +3,8 @@ package cn.yjxxclub.springboot.mapper;
 import cn.yjxxclub.springboot.entity.ContactNotes;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * Author: 遇见小星
  * Email: tengxing7452@163.com
@@ -12,5 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ContactNotesMapper extends BaseMapper<ContactNotes>{
+    List<ContactNotes> selectAllByMemberId(Integer id);
 
 }

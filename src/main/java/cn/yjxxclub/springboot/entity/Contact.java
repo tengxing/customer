@@ -13,12 +13,10 @@ import java.util.Date;
 public class Contact implements Serializable {
 
     private Integer id;
-    private String leadername;
+    private String username;
     private String nickname;
-    private String maill;
+    private String mail;
     private String phoneNumber;
-    private Integer memberId;
-    private String creator;
     private Integer status;
     private Date createDate;
     private Date updateDate;
@@ -31,12 +29,12 @@ public class Contact implements Serializable {
         this.id = id;
     }
 
-    public String getLeadername() {
-        return leadername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLeadername(String leadername) {
-        this.leadername = leadername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNickname() {
@@ -47,12 +45,12 @@ public class Contact implements Serializable {
         this.nickname = nickname;
     }
 
-    public String getMaill() {
-        return maill;
+    public String getMail() {
+        return mail;
     }
 
-    public void setMaill(String maill) {
-        this.maill = maill;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPhoneNumber() {
@@ -61,22 +59,6 @@ public class Contact implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Integer getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Integer memberId) {
-        this.memberId = memberId;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
     }
 
     public Integer getStatus() {

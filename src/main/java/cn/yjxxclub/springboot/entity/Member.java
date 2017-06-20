@@ -1,6 +1,7 @@
 package cn.yjxxclub.springboot.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Author: 遇见小星
@@ -13,17 +14,35 @@ public class Member implements java.io.Serializable{
 
     private Integer id;
     private String name;
-    private Integer managedId;
+    private User user;
     private String phoneNumber;
     private String address;
-    private Integer bmIndustryId;
-    private Integer bmAreaId;
-    private Integer bmTypeId;
-    private Integer bmStatusId;
+    private BmIndustry bmIndustry;
+    private BmArea bmArea;
+    private BmType bmType;
+    private BmStatus bmStatus;
+    private Contact contact;
+    private List<ContactNotes>  contactNotes;
     private Integer status;
     private Date updateDate;
     private String creator;
     private Date createDate;
+
+    public List<ContactNotes> getContactNotes() {
+        return contactNotes;
+    }
+
+    public void setContactNotes(List<ContactNotes> contactNotes) {
+        this.contactNotes = contactNotes;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
 
     public Integer getId() {
         return id;
@@ -41,12 +60,12 @@ public class Member implements java.io.Serializable{
         this.name = name;
     }
 
-    public Integer getManagedId() {
-        return managedId;
+    public User getUser() {
+        return user;
     }
 
-    public void setManagedId(Integer managedId) {
-        this.managedId = managedId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getPhoneNumber() {
@@ -65,36 +84,36 @@ public class Member implements java.io.Serializable{
         this.address = address;
     }
 
-    public Integer getBmIndustryId() {
-        return bmIndustryId;
+    public BmIndustry getBmIndustry() {
+        return bmIndustry;
     }
 
-    public void setBmIndustryId(Integer bmIndustryId) {
-        this.bmIndustryId = bmIndustryId;
+    public void setBmIndustry(BmIndustry bmIndustry) {
+        this.bmIndustry = bmIndustry;
     }
 
-    public Integer getBmAreaId() {
-        return bmAreaId;
+    public BmArea getBmArea() {
+        return bmArea;
     }
 
-    public void setBmAreaId(Integer bmAreaId) {
-        this.bmAreaId = bmAreaId;
+    public void setBmArea(BmArea bmArea) {
+        this.bmArea = bmArea;
     }
 
-    public Integer getBmTypeId() {
-        return bmTypeId;
+    public BmType getBmType() {
+        return bmType;
     }
 
-    public void setBmTypeId(Integer bmTypeId) {
-        this.bmTypeId = bmTypeId;
+    public void setBmType(BmType bmType) {
+        this.bmType = bmType;
     }
 
-    public Integer getBmStatusId() {
-        return bmStatusId;
+    public BmStatus getBmStatus() {
+        return bmStatus;
     }
 
-    public void setBmStatusId(Integer bmStatusId) {
-        this.bmStatusId = bmStatusId;
+    public void setBmStatus(BmStatus bmStatus) {
+        this.bmStatus = bmStatus;
     }
 
     public Integer getStatus() {
@@ -127,5 +146,24 @@ public class Member implements java.io.Serializable{
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", user=" + user +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", bmIndustry=" + bmIndustry +
+                ", bmArea=" + bmArea +
+                ", bmType=" + bmType +
+                ", bmStatus=" + bmStatus +
+                ", status=" + status +
+                ", updateDate=" + updateDate +
+                ", creator='" + creator + '\'' +
+                ", createDate=" + createDate +
+                '}';
     }
 }

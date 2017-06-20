@@ -1,5 +1,6 @@
 package cn.yjxxclub.springboot.test;
 
+import cn.yjxxclub.springboot.entity.Group;
 import cn.yjxxclub.springboot.entity.Member;
 import cn.yjxxclub.springboot.mapper.MemberMapper;
 import org.junit.Test;
@@ -22,7 +23,7 @@ import java.util.Map;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MemberTest {
+public class MemberTests {
 
     /**
      * Spring RestTemplate的便利替代。你可以获取一个普通的或发送基本HTTP认证（使用用户名和密码）的模板
@@ -45,9 +46,10 @@ public class MemberTest {
         Map<String,Object> map = new HashMap();
         map.put("start",0);
         map.put("size",8);
-        List<Member> list = memberMapper.list(map);
-        List<Member> list1 = memberMapper.findListByName("公司");
-        System.out.println("size:"+list1.size());
+        //List<Member> list = memberMapper.list(map);
+        List<Group> list = memberMapper.memberByStatus();
+        //List<Member> list1 = memberMapper.findListByName("公司");
+        System.out.println("size:"+list);
         System.out.println("-----测试完毕-------");
 
     }
