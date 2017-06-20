@@ -23,6 +23,39 @@
       padding-top: 10px;
   }.content-data{
     padding: 3px;
+  }.comment-container{
+
+
+  }.comment-list{
+    border-bottom: 1px dashed #cccccc;
+    padding:8px 0;
+  }.comment-list-li{
+    position: relative;
+    height: 45px;
+    margin-top: 0;
+    padding: 10px 0 10px 75px;
+    border-bottom: 1px dotted #E9E9E9;
+  }.comment-item{
+    padding-top: 0px;
+  }.fly-list-avatar {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}.fly-list-avatar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 2px;
+}.commit-list-li .fly-list-avatar {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}.commit-list-li p {
+    position: relative;
+    line-height: 20px;
+    font-size: 12px;
+    color: #999;
+    float: left;
+}
   </style>
 </head>
 <body>
@@ -136,7 +169,38 @@
         </div>
       </form>
     </div>
-    <div class="layui-tab-item">
+    <div class="layui-tab-item" style="text-align: left;">
+      <form class="layui-form">
+        <input type="hidden" id="contactNoteshiddenMemberId" name="memberId"/>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">联系记录</label>
+          <div class="layui-input-block">
+            <textarea name="description" placeholder="请输入内容" class="layui-textarea"></textarea>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">联系类型</label>
+          <div class="layui-input-block">
+            <input type="text" id="contactType" name="contactType" autocomplete="off" class="layui-input" value="">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">联系时间</label>
+          <div class="layui-inline">
+          <input class="layui-input" name="time" placeholder="自定义日期格式" onclick="laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="formContactNotesSave">保存记录</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置记录</button>
+          </div>
+        </div>
+      </form>
+        <hr>
+       <div id="contactNotesList">
+         <!-- 联系记录ajax -->
+       </div>
     </div>
     <div class="layui-tab-item">暂无</div>
   </div>
@@ -144,10 +208,10 @@
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-layui.use('element', function(){
-  var $ = layui.jquery
-
-  ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块;
+layui.use(['element','laydate'], function(){
+  var $ = layui.jquery,
+  laydate = layui.laydate,
+  element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块;
   //触发事件
   
   $('.site-demo-active').on('click', function(){

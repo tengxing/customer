@@ -23,6 +23,31 @@ layui.use(['laypage', 'layer', 'form'], function () {
       });
       return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
+
+    form.on('submit(formContactSave)', function(data){
+      $.post("/customer/contact/modifyOrSave",data.field,function(result){
+        if(result.success){
+            alert("操作成功");
+            setTimeout(function () {
+                        initPage(1, 8);
+                    }, 500);
+        }
+      });
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
+    form.on('submit(formContactNotesSave)', function(data){
+      $.post("/customer/contactNotes/modifyOrSave",data.field,function(result){
+        if(result.success){
+            alert("操作成功");
+            setTimeout(function () {
+                        initPage(1, 8);
+                    }, 500);
+        }
+      });
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
     form.on('switch(F_switch)', function(data){
       console.log(data.elem); //得到checkbox原始DOM对象
       console.log(data.elem.checked); //开关是否开启，true或者false
@@ -39,8 +64,9 @@ layui.use(['laypage', 'layer', 'form'], function () {
 
 //添加
 $('#addlayer').click(function () {
+    var form = layui.form();
     var $ = layui.jquery;
-    $.get('/customer/test.html', function(str){
+    $.get('/customer/page/member/add.html', function(str){
       layer.open({
         type: 1,
           title: '添加',
@@ -55,7 +81,9 @@ $('#addlayer').click(function () {
           offset: ['1px','61%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
-    });  
+      form.render(); 
+    });
+
 });
 
 //页数据初始化
@@ -147,8 +175,9 @@ function initPage(currentIndex, pageSize) {
 
 //编辑文章
 function modifylayer(articleId) {
-    var $ = layui.jquery;
-    $.get('/customer/page/member/add.html', function(str){
+    var $ = layui.jquery,
+    form = layui.form();
+    $.get('/customer/page/member/show.html', function(str){
       layer.open({
         type: 1,
           title: '客户',
@@ -163,6 +192,7 @@ function modifylayer(articleId) {
           offset: ['1px','47%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
+
     });
 
     var $ = layui.jquery;
@@ -176,12 +206,35 @@ function modifylayer(articleId) {
             console.info(data)
             layer.close(index);
             $('#id').val(data.id);
+            $('#typeId').val(data.bmType.id);
+            $('#statusId').val(data.bmStatus.id);
             $('#name').val(data.name);
             $('#user_username').val(data.user.username);
             $('#status').val(data.status);
+            $('#contact_username').val(data.contact.username);
+            $('#contact_nickname').val(data.contact.nickname);
+            $('#contact_phoneNumber').val(data.contact.phoneNumber);
+            $('#contact_mail').val(data.contact.mail);
+            $('#contact_id').val(data.contact.id);
+            $('#contactNoteshiddenMemberId').val(data.id);
+
+            form.render('select');//必须刷新数据
             /*$('#articleBack').bind('click', function () {
                 initilArticle(1, 8);
             });*/
+            var contactNotes = data.contactNotes;
+            var html = '';
+                //遍历文章集合
+                for (var i = 0; i < contactNotes.length; i++) {
+                    var item = contactNotes[i];
+                    html += '<div class="comment-container comment-list"><div class="comment-item"><li class="comment-list-li"><a href="#" class="fly-list-avatar"><img src="https://www.eteams.cn/static/images/avatar.png" alt="头像"</a> <h2 class="fly-tip">';
+                    html += '<a href="#">' + item.name+ "</a>";
+                    html += '<span class="fly-tip-stick">【' + item.contactType + '】</span></h2>';
+                    html += "<p><span>" + item.description + "</p></span>";
+                    html += "<p><span>" + item.contactTime + "</p></span>";
+                    html += "</li></div></div>";
+                }
+            $("#contactNotesList").html(html);
             
         },
         error: function (e) {
