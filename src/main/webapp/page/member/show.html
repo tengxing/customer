@@ -82,10 +82,13 @@
           </div>
         </div>
         <div class="layui-form-item">
-          <label class="layui-form-label">客户经理</label>
-          <div class="layui-input-block">
-            <input type="text" id="user_username" name="userId" autocomplete="off" class="layui-input" value="">
-          </div>
+         <label class="layui-form-label">客户经理</label>
+            <div class="layui-input-inline input-custom-width">
+              
+                <div id="userGroup">
+                  
+                </div>
+            </div>
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">通讯地址</label>
@@ -109,6 +112,22 @@
             <div class="layui-input-inline input-custom-width">
               
                 <div id="typeGroup">
+                  
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户行业</label>
+            <div class="layui-input-inline input-custom-width">
+              
+                <div id="industryGroup">
+                  
+                </div>
+            </div>
+          <label class="layui-form-label">客户地区</label>
+            <div class="layui-input-inline input-custom-width">
+              
+                <div id="areaGroup">
                   
                 </div>
             </div>
@@ -173,13 +192,13 @@
         <div class="layui-form-item">
           <label class="layui-form-label">联系类型</label>
           <div class="layui-input-block">
-            <input type="text" id="contactType" name="contactType" autocomplete="off" class="layui-input" value="">
+            <input type="text" id="contactType" name="contactType" autocomplete="off" class="layui-input" placeholder="如：电话，宴请，邮箱等">
           </div>
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">联系时间</label>
           <div class="layui-inline">
-          <input class="layui-input" name="time" placeholder="自定义日期格式" onclick="laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+          <input class="layui-input" name="time" placeholder="点击选择时间" onclick="laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
         </div>
         </div>
         <div class="layui-form-item">

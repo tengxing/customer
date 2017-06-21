@@ -124,7 +124,7 @@ function initPage(currentIndex, pageSize) {
     $.ajax({
         type: 'post',
         url: '/customer/member/list',
-        data:{ "page": currentIndex, "size": pageSize,"attention":true },
+        data:{ "page": currentIndex, "size": pageSize,"attention":"true" },
         datatype: 'json',
         success: function (res) {
             layer.close(index);
@@ -224,7 +224,19 @@ function modifylayer(articleId) {
 
     var $ = layui.jquery;
     var index = layer.load(1);
-
+    $.post("/customer/users/userGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="userId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#userGroup").html(html);
+            form.render('select'); 
+        }
+      });
     $.post("/customer/status/statusGroup",function(result){
         if (result.success) {
             var html = "";
@@ -251,7 +263,33 @@ function modifylayer(articleId) {
             form.render('select'); 
         }
       });
-
+       $.post("/customer/industry/industryGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="industryId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#industryGroup").html(html);
+            form.render('select'); 
+        }
+      });
+      $.post("/customer/area/areaGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="areaId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#areaGroup").html(html);
+            form.render('select'); 
+        }
+      });
+      
     $.ajax({
         type: 'post',
         url: '/customer/member/find',
