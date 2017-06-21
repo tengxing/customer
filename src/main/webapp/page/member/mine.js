@@ -23,6 +23,31 @@ layui.use(['laypage', 'layer', 'form'], function () {
       });
       return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
+
+    form.on('submit(formContactSave)', function(data){
+      $.post("/customer/contact/modifyOrSave",data.field,function(result){
+        if(result.success){
+            alert("操作成功");
+            setTimeout(function () {
+                        initPage(1, 8);
+                    }, 500);
+        }
+      });
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
+    form.on('submit(formContactNotesSave)', function(data){
+      $.post("/customer/contactNotes/modifyOrSave",data.field,function(result){
+        if(result.success){
+            alert("操作成功");
+            setTimeout(function () {
+                        initPage(1, 8);
+                    }, 500);
+        }
+      });
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
     form.on('switch(F_switch)', function(data){
       console.log(data.elem); //得到checkbox原始DOM对象
       console.log(data.elem.checked); //开关是否开启，true或者false
@@ -39,6 +64,7 @@ layui.use(['laypage', 'layer', 'form'], function () {
 
 //添加
 $('#addlayer').click(function () {
+    var form = layui.form();
     var $ = layui.jquery;
     $.get('/customer/page/member/add.html', function(str){
       layer.open({
@@ -55,7 +81,35 @@ $('#addlayer').click(function () {
           offset: ['1px','61%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
-    });  
+
+      $.post("/customer/status/statusGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="statusId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#statusGroup").html(html);
+            form.render('select'); 
+        }
+      });
+      $.post("/customer/type/typeGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="typeId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#typeGroup").html(html);
+            form.render('select'); 
+        }
+      });
+    });
+
 });
 
 //页数据初始化
@@ -70,7 +124,7 @@ function initPage(currentIndex, pageSize) {
     $.ajax({
         type: 'post',
         url: '/customer/member/list',
-        data:{ "page": currentIndex, "size": pageSize,"creator":"遇见小星" },
+        data:{ "page": currentIndex, "size": pageSize,"creator":"小星" },
         datatype: 'json',
         success: function (res) {
             layer.close(index);
@@ -105,6 +159,7 @@ function initPage(currentIndex, pageSize) {
                 html += '</tbody>';
                 html += '</table>';
                 html += '<div id="' + laypageId + '"></div>';
+                $('#pageContent').empty();
                 $('#pageContent').html(html);
                 form.render('checkbox');  //重新渲染CheckBox，编辑和添加的时候
                 //$('#articleConsole,#articleList').attr('style', 'display:block'); //显示FiledBox
@@ -147,8 +202,9 @@ function initPage(currentIndex, pageSize) {
 
 //编辑文章
 function modifylayer(articleId) {
-    var $ = layui.jquery;
-    $.get('/customer/page/member/add.html', function(str){
+    var $ = layui.jquery,
+    form = layui.form();
+    $.get('/customer/page/member/show.html', function(str){
       layer.open({
         type: 1,
           title: '客户',
@@ -163,10 +219,39 @@ function modifylayer(articleId) {
           offset: ['1px','47%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
+
     });
 
     var $ = layui.jquery;
     var index = layer.load(1);
+
+    $.post("/customer/status/statusGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="statusId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#statusGroup").html(html);
+            form.render('select'); 
+        }
+      });
+      $.post("/customer/type/typeGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="typeId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#typeGroup").html(html);
+            form.render('select'); 
+        }
+      });
+
     $.ajax({
         type: 'post',
         url: '/customer/member/find',
@@ -176,12 +261,36 @@ function modifylayer(articleId) {
             console.info(data)
             layer.close(index);
             $('#id').val(data.id);
+            $('#typeId').val(data.bmType.id);
+            $('#statusId').val(data.bmStatus.id);
+            $("#statusGroup").next().find("dd[lay-value='3']").click();
             $('#name').val(data.name);
             $('#user_username').val(data.user.username);
             $('#status').val(data.status);
+            $('#contact_username').val(data.contact.username);
+            $('#contact_nickname').val(data.contact.nickname);
+            $('#contact_phoneNumber').val(data.contact.phoneNumber);
+            $('#contact_mail').val(data.contact.mail);
+            $('#contact_id').val(data.contact.id);
+            $('#contactNoteshiddenMemberId').val(data.id);
+
+            form.render('select');//必须刷新数据
             /*$('#articleBack').bind('click', function () {
                 initilArticle(1, 8);
             });*/
+            var contactNotes = data.contactNotes;
+            var html = '';
+                //遍历文章集合
+                for (var i = 0; i < contactNotes.length; i++) {
+                    var item = contactNotes[i];
+                    html += '<div class="comment-container comment-list"><div class="comment-item"><li class="comment-list-li"><a href="#" class="fly-list-avatar"><img src="https://www.eteams.cn/static/images/avatar.png" alt="头像"</a> <h2 class="fly-tip">';
+                    html += '<a href="#">' + item.name+ "</a>";
+                    html += '<span class="fly-tip-stick">【' + item.contactType + '】</span></h2>';
+                    html += "<p><span>" + item.description + "</p></span>";
+                    html += "<p><span>" + item.contactTime + "</p></span>";
+                    html += "</li></div></div>";
+                }
+            $("#contactNotesList").html(html);
             
         },
         error: function (e) {

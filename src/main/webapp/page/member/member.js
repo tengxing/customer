@@ -81,7 +81,33 @@ $('#addlayer').click(function () {
           offset: ['1px','61%'],
         content: str //注意，如果str是object，那么需要字符拼接。
       });
-      form.render(); 
+
+      $.post("/customer/status/statusGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="statusId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#statusGroup").html(html);
+            form.render('select'); 
+        }
+      });
+      $.post("/customer/type/typeGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="typeId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#typeGroup").html(html);
+            form.render('select'); 
+        }
+      });
     });
 
 });
@@ -133,6 +159,7 @@ function initPage(currentIndex, pageSize) {
                 html += '</tbody>';
                 html += '</table>';
                 html += '<div id="' + laypageId + '"></div>';
+                $('#pageContent').empty();
                 $('#pageContent').html(html);
                 form.render('checkbox');  //重新渲染CheckBox，编辑和添加的时候
                 //$('#articleConsole,#articleList').attr('style', 'display:block'); //显示FiledBox
@@ -197,6 +224,34 @@ function modifylayer(articleId) {
 
     var $ = layui.jquery;
     var index = layer.load(1);
+
+    $.post("/customer/status/statusGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="statusId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#statusGroup").html(html);
+            form.render('select'); 
+        }
+      });
+      $.post("/customer/type/typeGroup",function(result){
+        if (result.success) {
+            var html = "";
+            html += '<select name="typeId" lay-verify="required">';
+            for (var i = result.data.length - 1; i >= 0; i--) {
+                var item = result.data[i];
+                html += '<option value="'+item.id+'">'+item.name+'</option>';
+            }
+            html +='</select>';
+            $("#typeGroup").html(html);
+            form.render('select'); 
+        }
+      });
+
     $.ajax({
         type: 'post',
         url: '/customer/member/find',
@@ -208,6 +263,7 @@ function modifylayer(articleId) {
             $('#id').val(data.id);
             $('#typeId').val(data.bmType.id);
             $('#statusId').val(data.bmStatus.id);
+            $("#statusGroup").next().find("dd[lay-value='3']").click();
             $('#name').val(data.name);
             $('#user_username').val(data.user.username);
             $('#status').val(data.status);
