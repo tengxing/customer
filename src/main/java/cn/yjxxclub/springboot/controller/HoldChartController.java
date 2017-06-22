@@ -26,6 +26,10 @@ public class HoldChartController {
     @Autowired
     MemberMapper memberMapper;
 
+    /**
+     * 按状态分类客户
+     * @return
+     */
     @PostMapping("/memberByStatus")
     public Object memberByStatus(){
         List<Group> list = memberMapper.memberByStatus();
@@ -35,5 +39,48 @@ public class HoldChartController {
         result.put("data",list);
         return result;
     }
+
+    /**
+     * 按地区分类客户
+     * @return
+     */
+    @PostMapping("/memberByArea")
+    public Object memberByArea(){
+        List<Group> list = memberMapper.memberByArea();
+        JSONObject result = new JSONObject();
+        result.put("success",true);
+        result.put("status","200");
+        result.put("data",list);
+        return result;
+    }
+
+    /**
+     * 按类型分类客户
+     * @return
+     */
+    @PostMapping("/memberByType")
+    public Object memberByType(){
+        List<Group> list = memberMapper.memberByType();
+        JSONObject result = new JSONObject();
+        result.put("success",true);
+        result.put("status","200");
+        result.put("data",list);
+        return result;
+    }
+
+    /**
+     * 按行业分类客户
+     * @return
+     */
+    @PostMapping("/memberByIndustry")
+    public Object memberByIndustry(){
+        List<Group> list = memberMapper.memberByIndustry();
+        JSONObject result = new JSONObject();
+        result.put("success",true);
+        result.put("status","200");
+        result.put("data",list);
+        return result;
+    }
+
 
 }

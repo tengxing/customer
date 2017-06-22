@@ -3,34 +3,35 @@ layui.use('element','form', function(){
   ,element = layui.element() //Tab的切换功能，切换事件监听等，需要依赖element模块
   ,form = layui.form();
   //触发事件
-  
-  $('.site-demo-active').on('click', function(){
-    var othis = $(this), type = othis.data('type');
-    active[type] ? active[type].call(this, othis) : '';
-  });
-  
-  //Hash地址的定位
-  var layid = location.hash.replace(/^#test=/, '');
-  element.tabChange('test', layid);
-  
-  element.on('tab(test)', function(elem){
-    location.hash = 'test='+ $(this).attr('lay-id');
-  });
-  
+
+  /*element.on('tab(chartTab)', function(data){
+    console.log(data);
+  });*/
 });
 
+//init
+getData("/customer/holdChart/memberByStatus");
+//点击获取数据
+$("#chartTab li").on("click",function(elem){
+  var log = elem.target.outerHTML;
+  $("#myid").html(log);
+  var url = document.getElementById("myid").firstElementChild.getAttribute("data-url");
+  getData(url);
+});
+
+function getData(url){
   $.ajax({
     type:'post',
-    url:'/customer/holdChart/memberByStatus',
+    url:url,
     success: function(result){
-      if (result.success) {
-        
-        mycanvas(dataBox1,result.data,'bar');
+      if (result.success) {    
+        mycanvas(result.data,'bar');
       }
     }
   });
+}
 
-  function mycanvas(dom,data,type){
+function mycanvas(data,type){
 
     var name = new Array();  
         count=[];
@@ -267,3 +268,6 @@ option3 = {
    var myChart3 = echarts.init(document.getElementById('dataBox3')); 
    myChart3.setOption(option3);                
 }
+  
+
+  

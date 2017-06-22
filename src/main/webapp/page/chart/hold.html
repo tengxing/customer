@@ -49,32 +49,37 @@
 }
 .axis--x path {
   display: none;
-}
+}.layui-nav .layui-nav-item a{
+	width: 180px;
+	color: #333333;
+}.layui-nav .layui-nav-item a:hover{color: #2dc3e8;}
+.layui-nav .layui-this:after,
+.layui-nav-tree .layui-nav-itemed:after{position: absolute; left: 0; top: 0; width: 0; height: 5px; background-color: #ddddaa; transition: all .2s; -webkit-transition: all .2s;}
   </style>
 </head>
 <body>
-			<!-- 	<ul class="layui-nav " lay-filter="">
+				<!-- <ul class="layui-nav " lay-filter="" style="text-align: center;background-color: #FFFFFF">
                     <li class="layui-nav-item layui-this">
-                        <a href="javascript:;"><i class="fa fa-home"></i>Home</a>
+                        <a href="javascript:;"><i class="fa fa-home"></i>按状态</a>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;"><i class="fa fa-file-text"></i>客户库</a>    
+                        <a href="javascript:;"><i class="fa fa-file-text"></i>按类型</a>    
                     </li>                  
                     <li class="layui-nav-item">
-                        <a href="javascript:;"><i class="fa fa-commenting"></i>联系记录</a>   
+                        <a href="javascript:;"><i class="fa fa-commenting"></i>按地区</a>   
                     </li>
                     <li class="layui-nav-item">
-                       <a href="javascript:;"><i class="fa fa-bar-chart"></i>统计报表</a> 
+                       <a href="javascript:;"><i class="fa fa-bar-chart"></i>按行业</a> 
                     </li>
-                </ul> -->
-	<div class="layui-tab" style="text-align:center !important;">
-  		<ul class="layui-tab-title" style="">
-		    <li class="layui-this">按状态</li>
-		    <li>按类型</li>
-		    <li>按地区</li>
-		    <li>按行业</li>
-  		</ul>
-		  <div class="layui-tab-content">
+                </ul> --> 
+	<div class="layui-tab layui-tab-brief">
+  <ul class="layui-tab-title" style="text-align: center" id="chartTab" width:300px;>
+    <li class="layui-this" data-url="/customer/holdChart/memberByStatus">按状态</li>
+    <li class="" data-url="/customer/holdChart/memberByType">按类型</li>
+    <li data-url="/customer/holdChart/memberByArea">按地区</li>
+    <li data-url="/customer/holdChart/memberByIndustry">按行业</li>
+  </ul>
+		<div class="" style="margin:10px">
 		    <div class="layui-tab-item layui-show" id="show-member">
 		    	<div class="layui-tab-content">
 		    		<div class="content-box">
@@ -102,10 +107,11 @@
 					</div>
 				</div>
 		    </div>
-		    <div class="layui-tab-item">内容2</div>
-		    <div class="layui-tab-item">内容3</div>
-		    <div class="layui-tab-item">暂无</div>
-		  </div>
+		   
+	    </div>
+	</div>
+	<div style="display: none;">
+		<div id="myid"></div>
 	</div>
 <div class="row-right" style="float: right;"></div>
 <script src="/customer/layui/layui.js"></script>
