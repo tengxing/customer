@@ -40,7 +40,15 @@
 	}.bar {
   fill: steelblue;
 }
-
+.my-info{
+	text-align: left;
+	margin-top: 487px;
+    margin-left: 20px;
+    margin-right: 20px;
+	    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
 .bar:hover {
   fill: brown;
 }
@@ -74,29 +82,13 @@
                 </ul> --> 
 	<div class="layui-tab layui-tab-brief">
   <ul class="layui-tab-title" style="text-align: center" id="chartTab" width:300px;>
-    <li class="layui-this" data-url="/customer/holdChart/memberByStatus">按状态</li>
-    <li class="" data-url="/customer/holdChart/memberByType">按类型</li>
-    <li data-url="/customer/holdChart/memberByArea">按地区</li>
-    <li data-url="/customer/holdChart/memberByIndustry">按行业</li>
+    <li class="layui-this" data-url="/customer/holdChart/countByDate">近一周</li>
+    <li class="" data-url="/customer/holdChart/countByDate">近两周</li>
+    <li data-url="/customer/holdChart/countByDate">近一月</li>
   </ul>
 		<div class="" style="margin:10px">
 		    <div class="layui-tab-item layui-show" id="show-member">
-		    	<div class="layui-tab-content">
-		    		<div class="content-box">
-						<div class="layui-tab-item layui-show">
-							<div class="content-data">
-								<canvas id="dataBox1" width="750" height="400"></canvas>
-							</div>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="layui-tab-item layui-show">
-							<div class="content-data">
-								<canvas id="dataBox2" width="750px" height="400px"></canvas>
-							</div>
-						</div>
-					</div>
-				</div>
+		    	
 				<div class="layui-tab-content">
 					<div class="content-box-big">
 						<div class="layui-tab-item layui-show">
@@ -106,6 +98,22 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="layui-tab-content my-info">
+					<h5>新建客户统计图说明</h5><div class="content"><p>说明：纵向坐标代表的是新建的客户数量，横向坐标代表的是客户新建时间</p></div>
+				</div>
+
+				<div class="layui-tab-content" style="margin: 0 10px;">
+					<div class="layui-tab-item layui-show">
+						<div class="layui-form">
+				        	<div id="pageContent" class="">
+				            <!--内容区域 ajax获取-->
+
+				        	</div>
+						</div>
+					</div>
+				</div>
+
 		    </div>
 		   
 	    </div>
@@ -115,6 +123,6 @@
 	</div>
 <div class="row-right" style="float: right;"></div>
 <script src="/customer/layui/layui.js"></script>
-<script type="text/javascript" src="/customer/page/chart/hold.js"></script>
+<script type="text/javascript" src="/customer/page/chart/mychart.js"></script>
 </body>
 </html>
