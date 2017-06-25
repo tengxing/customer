@@ -1,6 +1,7 @@
 package cn.yjxxclub.springboot.controller;
 
 import cn.yjxxclub.springboot.entity.BmIndustry;
+import cn.yjxxclub.springboot.entity.Group;
 import cn.yjxxclub.springboot.mapper.IndustryMapper;
 import cn.yjxxclub.springboot.util.DateJsonValueProcessor;
 import cn.yjxxclub.springboot.util.PageBean;
@@ -73,6 +74,20 @@ public class BmIndustryController {
         result.put("success",true);
         result.put("status",200);
         result.put("data",bmIndustry);
+        return result;
+    }
+
+    /**
+     * 行业名称组
+     * @return
+     */
+    @PostMapping("/industryGroup")
+    public Object industryGroup(){
+        List<Group> list = industryMapper.industryGroup();
+        JSONObject result = new JSONObject();
+        result.put("data",list);
+        result.put("success",true);
+        result.put("status",200);
         return result;
     }
 
