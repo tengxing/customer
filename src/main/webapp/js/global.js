@@ -90,7 +90,7 @@ layui.use(['element', 'layer', 'util'], function () {
         } else {
             var index = layer.load(1);
 
-            data = '<iframe src="' + url + '" style="width:100%;height:755px;border:none;outline:none;"></iframe>';
+            data = '<iframe src="' + url + '" style="width:100%;height:855px;border:none;outline:none;"></iframe>';
             layer.close(index);
             element.tabAdd('tab', { title: title, content: data, id: id });
             //切换到指定索引的卡片

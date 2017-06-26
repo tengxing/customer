@@ -191,7 +191,7 @@ a cite{font-style: normal; *cursor:pointer;}
 .layui-form-select dl dd{cursor: pointer;}
 .layui-form-select dl dd:hover{background-color: #f2f2f2;}
 .layui-form-select .layui-select-group dd{padding-left: 20px;}
-.layui-form-select dl dd.layui-this{background-color: #5FB878; color: #fff;}
+.layui-form-select dl dd.layui-this{background-color: #2dc3e8; color: #fff;}
 .layui-form-select dl dd.layui-disabled{background-color: #fff;}
 .layui-form-selected dl{display: block;}
 .layui-form-selected .layui-edge{margin-top: -9px; -webkit-transform:rotate(180deg); transform: rotate(180deg);}
@@ -374,7 +374,7 @@ a cite{font-style: normal; *cursor:pointer;}
 .layui-nav-tree .layui-nav-itemed:after{position: absolute; left: 0; top: 0; width: 0; height: 5px; background-color: #1e2631; transition: all .2s; -webkit-transition: all .2s;}
 .layui-nav-bar{z-index: 1000;}
 .layui-nav .layui-this a
-,.layui-nav .layui-nav-item a:hover{color: #fff;}
+,c
 .layui-nav .layui-this:after{content: ''; top: auto; bottom: 0; width: 100%;}
 
 .layui-nav .layui-nav-more{content:''; width: 0; height: 0; border-style: dashed; border-color: transparent; overflow: hidden; cursor: pointer; transition: all .2s; -webkit-transition: all .2s;}

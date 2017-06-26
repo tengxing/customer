@@ -25,9 +25,9 @@ layui.use(['laypage', 'layer', 'form'], function () {
                     /*html += "<td><input type='checkbox' lay-skin='primary' lay-filter='allChoose'></td>";*/
                     html += "<td>" + item.id+ "</td>";
                     html += "<td>" + item.name + "</td>";
-                    html += "<td>" + item.user.username + "</td>";
-                    html += "<td style='color:green'>" + item.bmStatus.name + "</td>";
-                    html += "<td style='color:green'>" + item.bmType.name + "</td>";
+                    html += "<td>" + (item.user==null?"暂无":item.user.username) + "</td>";
+                    html += "<td style='color:green'>" + (item.bmStatus==null?"无":item.bmStatus.name) + "</td>";
+                    html += "<td style='color:green'>" + (item.bmType==null?"无":item.bmType.name) + "</td>";
                     html += "<td>" + '<div class="layui-btn-group"><button onclick="modifylayer('+item.id
                                    + ');" class="do-action layui-btn layui-btn-small">查看</button><button onclick="deletelayer('+item.id
                                    + ');" class="do-action layui-btn layui-btn-small">删除</button></div>'

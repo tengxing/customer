@@ -186,29 +186,5 @@ function modifylayer(articleId) {
 
 //删除（作废）
 function deletelayer(articleId) {
-    layer.confirm('确定删除？', {
-        btn: ['确定', '取消'] //按钮
-    }, function () {
-        var $ = layui.jquery;
-        var index = layer.load(1);
-        $.ajax({
-            type: 'post',
-            url: ' /customer/status/delete',
-            data: { "id": articleId },
-            success: function (res) {
-                layer.close(index);
-                if (res.success) {
-                    layer.msg("操作成功", {icon: 1});
-                    setTimeout(function () {
-                        initPage(1, 8);
-                    }, 500);
-                }
-            },
-            error: function (e) {
-                layer.close(index);
-                layer.msg(e.responseText);
-            }
-        });
-    }, function () {}
-    );
+    alert("没有权限");
 }

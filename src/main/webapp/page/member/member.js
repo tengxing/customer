@@ -47,7 +47,27 @@ layui.use(['laypage', 'layer', 'form'], function () {
       });
       return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
-
+    form.on('submit(formExcelSave)', function(data){
+        var form = new FormData();
+        form.append("file",$("#file")[0].files[0]);
+        $.ajax({
+            type:'post',
+            url:'/customer/member/uploadExcel',
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function(result){
+                if(result.success){
+                    alert("操作成功");
+                    setTimeout(function () {
+                        initPage(1, 8);
+                    }, 500);
+                }
+            }
+        });
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+    
     form.on('switch(F_switch)', function(data){
       console.log(data.elem); //得到checkbox原始DOM对象
       console.log(data.elem.checked); //开关是否开启，true或者false
@@ -61,7 +81,27 @@ layui.use(['laypage', 'layer', 'form'], function () {
 
     form.render();
 });
-
+//导入
+$('#importlayer').click(function () {
+    var form = layui.form();
+    var $ = layui.jquery;
+    $.get('/customer/page/member/import.html', function(str){
+      layer.open({
+        type: 1,
+          title: '添加',
+          closeBtn: 1,
+          shade:0.5,
+          shadeClose: true,
+          anim:1,
+          maxmin:true,
+          isOutAnim: true,
+          skin: 'yourclass',
+          area: ['720px', '100%'],
+          offset: ['1px','61%'],
+        content: str //注意，如果str是object，那么需要字符拼接。
+      });
+    });
+});
 //添加
 $('#addlayer').click(function () {
     var form = layui.form();
@@ -138,16 +178,11 @@ function initPage(currentIndex, pageSize) {
                 //遍历文章集合
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
-                    if(item.status==1){
-                        item.status='启用';
-                    }else{
-                        item.status='未启用';
-                    }
                     html += "<tr>";
                     /*html += "<td><input type='checkbox' lay-skin='primary' lay-filter='allChoose'></td>";*/
                     html += "<td>" + item.id+ "</td>";
                     html += "<td>" + item.name + "</td>";
-                    html += "<td>" + item.user.username + "</td>";
+                    html += "<td>" + (item.user==null?"暂无":item.user.username) + "</td>";
                     html += "<td style='color:green'>" + item.bmStatus.name + "</td>";
                     html += "<td style='color:green'>" + item.bmType.name + "</td>";
                     html += "<td>" + '<div class="layui-btn-group"><button onclick="modifylayer('+item.id
@@ -366,3 +401,15 @@ function deletelayer(articleId) {
     }, function () {}
     );
 }
+
+$("#download").click(function(){
+    alert();
+    var url='/customer/member/testExcel',
+        iframe = document.createElement("iframe");
+        
+    
+    document.body.appendChild(iframe); 
+    alert();
+    iframe.src = url;
+    iframe.style.display = "none";
+});

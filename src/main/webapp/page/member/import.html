@@ -1,0 +1,23 @@
+<div class="layui-tab-content">
+    <div class="layui-tab-item layui-show" id="show-member">
+      <form class="layui-form" action="" method="post">
+        
+        <div class="layui-form-item">
+          <label class="layui-form-label">Excel文件:</label>
+          <div class="layui-input-block">
+            <input type="file" id="file" name="file" autocomplete="off" class="layui-input" style="background-color: #eff1f3; border: 0;" value="点击选取">
+          </div>
+        </div> 
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="formExcelSave">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+        <div>
+<a href="#" id="download" onclick="document.getElementById('iframe').src='/customer/member/testExcel';">Excel模板点击下载</a>
+          <iframe id="iframe" src="" style="display: none;"></iframe>
+        </div>
+        
+      </form>
+    </div>

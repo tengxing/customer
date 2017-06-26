@@ -10,7 +10,7 @@ layui.use('element','form', function(){
 });
 
 //init
-getData("/customer/member/countByDate");
+getData("/customer/member/countByDate?time=7");
 //点击获取数据
 $("#chartTab li").on("click",function(elem){
   var log = elem.target.outerHTML;
@@ -29,7 +29,8 @@ function getData(url){
             html = '<table style="" class="layui-table">';
                 //html += '<colgroup><col width="10%"><col width="15%"><col width="15%"><col width="15%"><col width="15%"><col></colgroup>';
           var t = '<thead><tr><th>人员</th>';
-          var c = '<tbody><tr><th>小星</th>';      
+          var c = '<tbody><tr><th>小星</th>';  
+          var count =data.length+1;    
                 //遍历文章集合
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
@@ -37,7 +38,7 @@ function getData(url){
                     c += "<td>" + item.count+ "</td>";
                 }
                 t += '<th>合计</th></tr></thead>';
-                c += '<th>'+data.length+'</th></tr></tbody>';
+                c += '<th>'+count+'</th></tr></tbody>';
                 html += t+c;
                 $('#pageContent').empty();
                 $('#pageContent').html(html);
