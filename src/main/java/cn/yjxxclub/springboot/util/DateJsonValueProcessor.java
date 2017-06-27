@@ -16,8 +16,12 @@ public class DateJsonValueProcessor implements JsonValueProcessor{
 
     private String format;
 
-    public DateJsonValueProcessor(String format){
+    public DateJsonValueProcessor(String format) {
         this.format = format;
+    }
+
+    public DateJsonValueProcessor(){
+        this.format="yyyy-MM-dd HH:mm:ss";
     }
 
     public Object processArrayValue(Object value, JsonConfig jsonConfig) {
